@@ -14,5 +14,6 @@ Thumbs.db
 # other files
 .env
 *.md
+!README.md
 fixtures/
 output/

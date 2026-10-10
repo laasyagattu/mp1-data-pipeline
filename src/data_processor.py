@@ -19,7 +19,7 @@ def handle_missing(df, axis="rows"):
         df = df.dropna(axis=0)
         logger.debug(f"Removed {len(before) - len(df)} rows with missing data")
 
-    if axis == "columns":
+    elif axis == "columns":
         before = df.copy()
         df = df.dropna(axis=1)
         logger.debug(f"Removed {before.shape[1] - df.shape[1]} columns with missing data")
@@ -32,16 +32,16 @@ def handle_missing(df, axis="rows"):
 
 def remove_outliers(df, columns, method, threshold):
     """Remove outliers from the specified numeric columns."""
-    if method != "iqr" or method != "zscore":
+    if method not in ("iqr", "zscore"):
         logger.error(f"Unsupported method: {method}")
         raise ValueError(f"Unsupported method: {method}")
 
     for col in columns:
         if col not in df.columns:
-            logger.warning(f"Column not found: {column}")
+            logger.warning(f"Column not found: {col}")
             continue
         if df[col].dtype != "numeric":
-            logger.warning(f"Column is not numeric: {column}")
+            logger.warning(f"Column is not numeric: {col}")
             continue
 
         if method == "iqr":
