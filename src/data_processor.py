@@ -25,7 +25,7 @@ def handle_missing(df, axis="rows"):
         logger.debug(f"Removed {before.shape[1] - df.shape[1]} columns with missing data")
 
     else:
-        logger.error(f"Unsupported axis: {axis}"")
+        logger.error(f"Unsupported axis: {axis}")
         raise ValueError(f"Unsupported axis: {axis}")
     return df
 
@@ -57,12 +57,7 @@ def remove_outliers(df, columns, method, threshold):
             upper = mean + threshold * std
 
         df_clean = df[(df[col] > lower) & (df[col] < upper)]
-        logger.debug(f"{col}:
-            \n method = {method},
-            \n threshold = {threshold},
-            \n lower = {lower},
-            \n upper = {upper},
-            \n rows removed = {len(df) - len(df_clean)}")
+        logger.debug(f"{col}: method = {method}, threshold = {threshold}, lower = {lower}, upper = {upper}, rows removed = {len(df) - len(df_clean)}")
 
     return df_clean
 
