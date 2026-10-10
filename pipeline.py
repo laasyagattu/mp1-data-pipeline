@@ -85,13 +85,13 @@ def main():
     except ValueError:
         sys.exit(1)
 
-    report = create_cleaning_report(data, cleaned)
+    report = create_cleaning_report(original, cleaned)
     logger.info(f"Processing complete: removed {report["rows_removed"]} rows, removed {report["columns_removed"]} columns")
     
     output_path = save_data(cleaned, args.output)
     logger.info(f"Saved cleaned data to: {output_path}")
 
-    print(report)
+    print("Cleaning Report:", report)
 
 if __name__ == "__main__":
     main()
